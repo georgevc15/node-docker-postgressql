@@ -24,6 +24,19 @@ app.get('/', function (req, res) {
 });
 
 
+app.post('/vote', urlencodedParser, function(req, res) {
+	let vote = req.body.yourVote;
+	if(vote === 'sandwiches') {
+		votes.sandwiches = votes.sandwiches + 1;
+	} else if (vote == 'tacos'){
+		votes.tacos = votes.tacos + 1;
+	} else {
+		console.log('Something went wrong: ' + vote);
+	}
+	res.redirect('/');
+});
+
+
 const PORT = 8888;
 app.listen(PORT);
 console.log('Running on http://localhost:' + PORT);
